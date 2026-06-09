@@ -66,6 +66,12 @@
   .src{margin-top:10px;font-size:12px}
   .src a{color:var(--blue);text-decoration:none;border-bottom:1px solid #bfdbfe}
   .src a:hover{border-color:var(--blue)}
+  .detail{margin-top:12px;font-size:13.5px;color:#334155;line-height:1.65;display:none;
+    border-top:1px solid var(--line);padding-top:12px}
+  .detail.open{display:block}
+  .more{margin-top:11px;background:none;border:none;color:var(--blue);font-weight:700;
+    font-size:13px;cursor:pointer;font-family:inherit;padding:0;display:inline-flex;align-items:center;gap:4px}
+  .more:hover{text-decoration:underline}
 
   .money{background:var(--blue-bg);border:1px solid #bfdbfe;border-radius:16px;padding:20px;margin-top:24px}
   .money h3{font-size:16px;color:var(--blue);margin-bottom:8px}
@@ -222,6 +228,28 @@ const DATA = [
    solve:"Dopravný generel + adaptívne semafory/zelená vlna + záchytné parkoviská; tlak na SSC. Zdroj: Program Slovensko – výzva 350 mil. € na inteligentné semafory a záchytné parkoviská.",
    src:[["Stav hlavnej križovatky","https://spravy.stvr.sk/2025/11/cestari-slubovali-opravu-najvytazenejsej-krizovatky-na-orave-vodici-sa-jej-vsak-nedockali-nezostali-na-nu-peniaze/"],["Program Slovensko (350 mil. €)","https://mirri.gov.sk/aktuality/program-slovensko-2021-2027/najvacsia-vyzva-z-programu-slovensko-podpori-verejnu-dopravu-v-regionoch-350-milionov-eur-prinesie-nove-trate-inteligentne-semafory-aj-zachytne-parkoviska/"]]},
 ];
+const DETAILS={
+"Mestská polícia":"Útvar existuje od roku 1991 a sídli v budove mestského úradu na Hviezdoslavovom námestí. Aktuálne má 8 príslušníkov a 6 informátorov, náčelníka od roku 2019 a nepretržitú telefonickú linku 159. V roku 2023 mesto z eurofondov (~500 tis. €, vlastná spoluúčasť 5 %) zmodernizovalo kamerový systém z 13 na 51 digitálnych analytických kamier. Polícia rieši verejný poriadok, parkovanie aj environmentálne priestupky a spolupracuje so štátnou políciou. Dlhodobo však chýba nepretržitá 24/7 služba a dostatočný počet príslušníkov.",
+"Verejné osvetlenie":"Mesto má približne 2 084 svetelných bodov na 63 odberných miestach. Postupné rekonštrukcie prebehli v rokoch 2002–2008, v roku 2015 mesto čerpalo 150 tis. € z programu MUNSEFF na energetické úspory. V roku 2023 pribudol inteligentný systém riadenia osvetlenia ako súčasť eurofondového projektu (~500 tis. €). Pri obnove športoviska v roku 2025 sa časť svietidiel menila za LED s úsporou až ~75 %. Kompletná výmena všetkých bodov za LED s plným smart riadením však nie je doložená ako dokončená.",
+"Pozemkové úpravy pre výstavbu":"V katastrálnom území Kňažia boli vo februári 2025 dokončené jednoduché pozemkové úpravy na 717 ha (z 3 365 na 725 parciel), financované z eurofondov (nad 300 tis. €) — vznikol priestor pre približne 100 rodinných domov. V lokalite Klince (Bysterec) je proces rozpracovaný (očakáva sa 250–300 pozemkov, prvé stavebné povolenia 2026–2027). Konanie vedie Okresný úrad (štát); mesto má facilitačnú úlohu a zároveň získava strategické pozemky na rozširovanie ciest a chodníkov.",
+"Šport a mládež":"Dotácie na šport a kultúru: 2022 = 182 tis. €, 2024 = 205 tis. € (historické maximum, 35 organizácií / 38 projektov), 2025 = 95 tis. €. V roku 2025 z prostriedkov Nadácie Kia Slovakia (700 tis. €) obnovili päť športovísk vrátane ihriska pri ZŠ M. Kukučína (nový povrch, basketbal, florbal). Program „odlož mobil – poď von“ sa v dostupných zdrojoch nenachádza a systematické sprístupnenie školských ihrísk verejnosti po vyučovaní nie je doložené.",
+"Parkovacia politika":"Platené parkovanie funguje od roku 2016 (centrum). V apríli 2024 mesto schválilo VZN na rezidenčné parkovanie na sídlisku Brezovec od 1. 7. 2024 (systém ParkDots, 660+ miest, z toho 395 spoplatnených). Existujú návštevnícke karty aj karty pre remeselníkov, víkendy a pracovné dni po 16:00 sú zdarma. Cenový nepomer (centrum 10/50/100 € vs. Brezovec 12/240/600 € ročne) vyvolal petíciu s 288 podpismi. Mesto zatiaľ nezverejňuje výkaz, kam výnosy z parkovného reálne idú.",
+"Školy a budovy":"Materská škola Odbojárov prešla v roku 2023 energetickou obnovou (zateplenie, fotovoltika, LED; náklady ~564 tis. €, 90 % z EÚ/štátu, úspora energie ~80 %). Pre MŠ Námestie Slobody je obnova plánovaná (2025), zatiaľ nerealizovaná. Pri mestskom kultúrnom stredisku prebehla len architektonická súťaž. Obnova budov základných škôl a denného centra nemá v rokoch 2022–2025 zdokumentovaný projekt.",
+"Turizmus":"Orava Card (regionálna zľavová karta, 7 € na 2 roky) zahŕňa aquapark AquaRelax, hotely aj reštaurácie — je to však produkt regiónu (Visit Orava), nie iniciatíva mesta. AquaRelax prevádzkuje mestská firma Aqua Kubín (mesto doň v 2021 vložilo 250 tis. €, vonkajší bazén ~600 tis. € v 2023–2024). Náučný chodník Kuzmínovo (1,8 km, 6 panelov) otvorili v 2022. Mestská „karta turistu“, systémové prepojenie aquaparku s ubytovaním a službami ani sieť fotorámov a opekačiek zatiaľ neexistujú.",
+"Mobilná aplikácia":"Mestská aplikácia (dodávateľ WEBY GROUP) je na Google Play aj App Store — umožňuje platbu parkovného (od 2018), notifikácie o odvoze odpadu, oznamy mesta a kontakty úradu. Funguje aj infraštruktúrny Smart IS (monitoring dopravy, teplôt vozoviek, energetiky). „Karta výhod pre obyvateľa“ so zľavami u partnerov sa v žiadnych projektoch, VZN ani rozpočte mesta nenašla a mesto ju ani neplánuje.",
+"Kultúrne stredisko":"MsKS organizuje približne 40 podujatí ročne. V auguste 2024 mesto vyhlásilo architektonickú súťaž na komplexnú modernizáciu budovy (6 500 m²), v novembri 2024 vyhralo štúdio MAPA architekti. Návrh počíta s 3 fázami a primátor pripúšťa, že celý proces môže trvať až 10 rokov. Pri Kine Choč (bývalá synagóga) prebehli v roku 2021 len záchranné práce 1. etapy (~63 tis. €), ďalšie etapy obnovy zatiaľ bez konkrétneho financovania a termínu.",
+"Transparentnosť":"Mesto zverejňuje zmluvy, objednávky a faktúry cez egov portál a Centrálny register zmlúv — ide o zákonné minimum podľa zákona 211/2000. Zápisnice mestských výborov sú na webe ako PDF (2019–2026). Kópie samotných faktúr (nie len zoznamy/metadáta) a štruktúrovaný online prehľad požiadaviek výborov a ich plnenia však chýbajú.",
+"Cyklotrasy a chodníky":"Schválený a financovaný je projekt 1. etapy mestskej cyklotrasy Dolný Kubín – Záskalie (1 km asfaltovej trasy + 100 m lávka cez Oravu), celkové náklady 5,36 mil. € (z toho 3,65 mil. € z eurofondov), realizácia 2025–2027 (výstavba má začať v 2026). Pripravuje sa aj Beňová Lehota (most + bezpečný chodník, ~1 mil. €). Sieť dopravných cyklotrás medzi sídliskami, do škôl a na pracoviská v meste prakticky neexistuje.",
+"Digitálne mesto":"V roku 2023 mesto realizovalo eurofondový projekt (~500 tis. €): 51 kamier, inteligentné osvetlenie a centrálnu riadiacu platformu. Platba parkovného cez SMS a aplikáciu funguje od 2018, no senzory obsadenosti parkovísk nikdy nezakúpili. Od novembra 2025 úrad ponúka asistenciu seniorom pri online úkonoch. Plnohodnotná bezpapierová e-komunikácia pre bežné agendy a smart senzory odpadov/parkovania v meste chýbajú.",
+"Participatívny rozpočet":"Mesto má systém 10 výborov volebných obvodov, ktorý niekedy označuje za „participatívny rozpočet“. V roku 2024 naň pripadlo 16 tis. €, v roku 2025 znížené na 14 tis. € — pri rozpočte ~21 mil. € to je len 0,07 %. O využití rozhodujú výbory (poslanci a niekoľko kooptovaných obyvateľov). Chýba verejná platforma na predkladanie návrhov aj hlasovanie občanov, teda znaky skutočného participatívneho rozpočtu.",
+"Nájomné bývanie":"Mesto spravuje 152 nájomných bytov (VZN 11/2025). V roku 2021 odkúpilo 12 bytov v Kňažej (132 tis. €), rekonštrukciu (~30 tis. € vďaka sociálnemu podniku) dokončilo do roku 2024 — ide o bývanie nižšieho štandardu (nájom 20–70 €/mes.) pre sociálne odkázané osoby. Nové byty v meste (200+ vo výstavbe) sú súkromné developerské projekty. Cielený mestský program dostupného bývania pre mladé rodiny (napr. cez ŠFRB) neexistuje.",
+"Seniori / opatrovateľská služba":"Mesto má jedno zariadenie opatrovateľskej služby (Obrancov mieru) v budove pôvodne skolaudovanej ako internát — nespĺňa bezbariérovosť ani protipožiarne požiadavky a jeho užívanie je v rozpore s kolaudačným rozhodnutím (komisia 12/2025). Denné centrum existuje. Komisia v decembri 2025 schválila prípravu projektovej dokumentácie na evakuačný výťah aj na výstavbu nového zariadenia (horizont 2–5 rokov); žiadosť o eurofondy zatiaľ nebola podaná.",
+"Zeleň a parky":"Park Martina Kukučína nemá systémovú revitalizáciu — jedinou doloženou prácou je oprava strechy altánka (2017, ~3,5 tis. €), ktorý odvtedy slúži ako letná čitáreň. V rokoch 2019–2020 mesto vysadilo 43 000 cibuľovín (projekt Rozkvitnutý Kubín, do 10 tis. €). Ročný rozpočet na verejnú zeleň je približne 450 tis. €. Levanduľové parky ani osobitná politika náhrad za výruby (nad rámec zákona 543/2002) neexistujú.",
+"Kompostáreň a odpady":"Moderná kompostáreň v meste nie je. Zberný dvor na Mokradi prijíma bioodpad (tráva, konáre), ale nejde o spracovateľské zariadenie. Projekt triedeného zberu z roku 2017 (1,46 mil. € z Kohézneho fondu) zahŕňal len nádoby a vozidlá. Poplatok za odpad 29,2 €/osoba je najvyšší na Orave. Hlavným odpadovým problémom je priemyselná skládka v Širokej (rekultivácia 2–3 mil. €), ktorej financovanie mesto odmietlo; rokovania s ministerstvom pokračujú.",
+"Digitálny územný plán":"Územný plán je VZN 8/2004, dostupný len ako PDF dokumenty (prílohy naposledy z 2018, hlavná časť aktualizovaná 2/2025). V apríli 2025 prebehlo pripomienkovanie Zmien a doplnkov č. 7 (43 zmien, 22 doplnkov), ku júnu 2026 neschválené. Web mesta má odkaz na ArcGIS mapu, tá však neintegruje regulatívy územného plánu. Prehľadný digitálny ÚP „všetko na jednom mieste“ chýba.",
+"Parkovací dom":"Mesto nemá žiadny parkovací dom ani schválený projekt na jeho výstavbu. Vedúci odboru dopravy priznal deficit približne 400 parkovacích miest. Radnica sama uvádza, že investori v spolupráci s mestom pripravili viaceré projekty parkovacích domov na Brezovci, ale obyvatelia sa s ich zámerom nestotožnili — žiadny neprešiel. Príjem z parkovného na Brezovci má ísť na „dopravné riešenia vrátane garáží“, ide však o neurčitý zámer bez sumy, termínu a partnera.",
+"Doprava a kolóny":"Mesto nemá inteligentné/adaptívne semafory, zelenú vlnu ani záchytné parkoviská (P+R). Najvyťaženejšia križovatka (kruhový objazd pri kaplnke, ~9 000 vozidiel/deň) je v havarijnom stave — Slovenská správa ciest opravu opakovane odkladala pre nedostatok peňazí, oprava povrchu je plánovaná na jún 2026. Primátor v novembri 2025 priznal, že stav vozovky sa z roka na rok zhoršuje. Most a hlavný ťah I/59 spravuje štát, no inteligentné riadenie dopravy a P+R môže iniciovať a financovať mesto (Program Slovensko, výzva 350 mil. €)."
+};
 const LABEL={ok:"✅ Funguje",mid:"🟡 Čiastočne",no:"🔴 Reálne chýba"};
 const el=document.getElementById('cards');
 function render(filter){
@@ -230,6 +258,7 @@ function render(filter){
     const c=document.createElement('article');
     c.className="card "+d.s;
     const srcHtml=d.src.map(x=>`<a href="${x[1]}" target="_blank" rel="noopener">${x[0]} ↗</a>`).join(" · ");
+    const det=DETAILS[d.t]||"";
     c.innerHTML=`
       <div class="top">
         <h3>${d.t}</h3>
@@ -238,10 +267,17 @@ function render(filter){
       <div class="row"><div class="k">Sľub</div><div class="v">${d.slub}</div></div>
       <div class="row"><div class="k">Realita</div><div class="v">${d.real}</div></div>
       <div class="row solve"><div class="k">Riešenie</div><div class="v">${d.solve}</div></div>
+      ${det?`<button class="more" aria-expanded="false">Viac ▾</button><div class="detail">${det}</div>`:""}
       <div class="src">Zdroj: ${srcHtml}</div>`;
     el.appendChild(c);
   });
 }
+el.addEventListener('click',e=>{
+  const b=e.target.closest('.more'); if(!b) return;
+  const det=b.nextElementSibling, open=det.classList.toggle('open');
+  b.textContent=open?"Menej ▴":"Viac ▾";
+  b.setAttribute('aria-expanded',open?"true":"false");
+});
 document.querySelectorAll('.pill').forEach(p=>{
   p.addEventListener('click',()=>{
     document.querySelectorAll('.pill').forEach(x=>x.classList.remove('active'));
