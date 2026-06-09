@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dolný Kubín — čo sa sľubuje a čo z toho reálne je</title>
+<meta name="description" content="Vecné porovnanie tém Dolného Kubína s overeným stavom mesta podľa verejne dostupných zdrojov, jún 2026.">
+<style>
+  :root{
+    --bg:#f6f7f9; --card:#fff; --ink:#0f172a; --muted:#64748b; --line:#e5e7eb;
+    --blue:#1d4ed8; --green:#15803d; --amber:#b45309; --red:#b91c1c;
+    --green-bg:#ecfdf5; --amber-bg:#fffbeb; --red-bg:#fef2f2; --blue-bg:#eff6ff;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--ink);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:920px;margin:0 auto;padding:0 18px}
+
+  header{background:linear-gradient(160deg,#0f172a 0%,#1e3a8a 100%);color:#fff;padding:48px 0 40px}
+  header .wrap{position:relative}
+  .eyebrow{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:#93c5fd;font-weight:600;margin-bottom:10px}
+  h1{font-size:clamp(26px,5vw,40px);line-height:1.15;font-weight:800;letter-spacing:-.02em}
+  header p{margin-top:14px;font-size:clamp(15px,2.4vw,18px);color:#dbeafe;max-width:680px}
+  .stat{display:flex;flex-wrap:wrap;gap:14px;margin-top:26px}
+  .stat .box{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:14px;padding:14px 18px;backdrop-filter:blur(4px)}
+  .stat .num{font-size:26px;font-weight:800;line-height:1}
+  .stat .lbl{font-size:12.5px;color:#cbd5e1;margin-top:4px}
+
+  section{padding:34px 0}
+  h2{font-size:clamp(20px,3.4vw,26px);font-weight:800;letter-spacing:-.01em;margin-bottom:6px}
+  .lead{color:var(--muted);margin-bottom:22px;max-width:680px}
+
+  .summary{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  @media(max-width:680px){.summary{grid-template-columns:1fr}}
+  .sumcard{border-radius:16px;padding:18px;border:1px solid var(--line);background:var(--card)}
+  .sumcard h3{font-size:16px;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+  .sumcard p{font-size:13.5px;color:#334155}
+  .sumcard.ok{background:var(--green-bg);border-color:#bbf7d0}
+  .sumcard.mid{background:var(--amber-bg);border-color:#fde68a}
+  .sumcard.no{background:var(--red-bg);border-color:#fecaca}
+
+  .filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
+  .pill{border:1px solid var(--line);background:#fff;color:#334155;border-radius:999px;
+    padding:8px 15px;font-size:13.5px;font-weight:600;cursor:pointer;transition:.15s;font-family:inherit}
+  .pill:hover{border-color:#cbd5e1}
+  .pill.active{background:var(--ink);color:#fff;border-color:var(--ink)}
+
+  .cards{display:flex;flex-direction:column;gap:14px}
+  .card{background:var(--card);border:1px solid var(--line);border-left-width:5px;border-radius:14px;
+    padding:18px 18px 16px;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+  .card.ok{border-left-color:var(--green)}
+  .card.mid{border-left-color:var(--amber)}
+  .card.no{border-left-color:var(--red)}
+  .card .top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:10px}
+  .card h3{font-size:17px;font-weight:700}
+  .badge{flex:none;font-size:12px;font-weight:700;padding:5px 11px;border-radius:999px;white-space:nowrap}
+  .badge.ok{background:var(--green-bg);color:var(--green)}
+  .badge.mid{background:var(--amber-bg);color:var(--amber)}
+  .badge.no{background:var(--red-bg);color:var(--red)}
+  .row{display:grid;grid-template-columns:96px 1fr;gap:10px;font-size:14px;padding:6px 0;border-top:1px dashed var(--line)}
+  .row:first-of-type{border-top:none}
+  .row .k{color:var(--muted);font-weight:600;font-size:12.5px;text-transform:uppercase;letter-spacing:.03em;padding-top:1px}
+  .row .v{color:#1e293b}
+  .row.solve .v{color:#0f172a}
+  .src{margin-top:10px;font-size:12px}
+  .src a{color:var(--blue);text-decoration:none;border-bottom:1px solid #bfdbfe}
+  .src a:hover{border-color:var(--blue)}
+
+  .money{background:var(--blue-bg);border:1px solid #bfdbfe;border-radius:16px;padding:20px;margin-top:24px}
+  .money h3{font-size:16px;color:var(--blue);margin-bottom:8px}
+  .money p{font-size:14px;color:#1e3a5f}
+
+  .note{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px}
+  .note h3{font-size:15px;margin-bottom:8px}
+  .note p{font-size:13px;color:var(--muted);margin-bottom:8px}
+
+  footer{padding:30px 0 50px;color:var(--muted);font-size:12.5px;text-align:center}
+  .hidden{display:none}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="eyebrow">Dolný Kubín · jún 2026</div>
+    <h1>Čo sa sľubuje a čo z toho reálne je?</h1>
+    <p>Vecné porovnanie tém, o ktorých sa v meste hovorí, s <strong>overeným stavom mesta</strong> podľa verejne dostupných zdrojov — projektov, VZN, rozpočtov a úradnej tabule.</p>
+    <div class="stat">
+      <div class="box"><div class="num">20</div><div class="lbl">preskúmaných tém</div></div>
+      <div class="box"><div class="num">21</div><div class="lbl">nezávislých rešerší</div></div>
+      <div class="box"><div class="num">~120</div><div class="lbl">overených zdrojov</div></div>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2>Stručný prehľad</h2>
+    <p class="lead">Mesto má funkčné základy, no viaceré konkrétne témy sú len rozpracované alebo reálne chýbajú.</p>
+    <div class="summary">
+      <div class="sumcard ok"><h3>✅ Funguje</h3><p>Mestská polícia, platené parkovanie, dotácie pre šport, mobilná aplikácia mesta.</p></div>
+      <div class="sumcard mid"><h3>🟡 Čiastočne</h3><p>Nájomné bývanie, participatívny rozpočet, kultúrne stredisko, cyklotrasa Záskalie, osvetlenie, pozemkové úpravy.</p></div>
+      <div class="sumcard no"><h3>🔴 Reálne chýba</h3><p>Riešenie kolón a inteligentné semafory, parkovací dom, kompostáreň, digitálny územný plán, park M. Kukučína.</p></div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <h2>Téma po téme</h2>
+    <p class="lead">Pri každej téme: čo sa sľubuje, aký je overený stav a ako by sa to dalo riešiť (vrátane zdroja financovania).</p>
+    <div class="filters">
+      <button class="pill active" data-f="all">Všetko</button>
+      <button class="pill" data-f="ok">✅ Funguje</button>
+      <button class="pill" data-f="mid">🟡 Čiastočne</button>
+      <button class="pill" data-f="no">🔴 Chýba</button>
+    </div>
+    <div class="cards" id="cards"></div>
+
+    <div class="money">
+      <h3>💶 Na väčšinu z toho existuje financovanie</h3>
+      <p>Program Slovensko (350 mil. € aj na inteligentné semafory a záchytné parkoviská), ŠFRB na nájomné byty, Environmentálny fond na kompostáreň, Plán obnovy na obnovu budov.</p>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="note">
+      <h3>Metodika a poznámka</h3>
+      <p>Zhodnotenie vychádza z verejne dostupných zdrojov mesta (dolnykubin.sk — projekty, VZN, rozpočty, úradná tabuľa, územný plán), Centrálneho registra zmlúv, enviroportal.sk a regionálnych médií, k stavu z júna 2026. „Realita“ opisuje doterajšie výsledky mesta, nie volebný program na rok 2026.</p>
+      <p>Zaradenie do kategórií a percentuálny odhad sú vlastné posúdenie z verejných zdrojov, nie oficiálne údaje mesta. Komunálne voľby sa konajú 24. 10. 2026, registrácia kandidátov sa uzatvára 9. 9. 2026.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">Zostavené z verejne dostupných zdrojov mesta · jún 2026 · ide o zhodnotenie, nie o oficiálne údaje mesta.</div>
+</footer>
+
+<script>
+const DATA = [
+  {t:"Mestská polícia",s:"ok",pct:75,slub:"„Pomáhať a chrániť“",
+   real:"Funguje od roku 1991, 8 príslušníkov + 6 informátorov, 51 kamier (EÚ projekt ~500 tis. €, 2023). Chýba nepretržitá 24/7 služba.",
+   solve:"Doplniť stav na nepretržitú službu (nábor, zmenový režim), využiť kamerovú analytiku. Zdroj: mestský rozpočet.",
+   src:[["Mestská polícia DK","https://www.dolnykubin.sk/mestska-policia.html"]]},
+  {t:"Verejné osvetlenie",s:"mid",pct:45,slub:"Úsporné moderné osvetlenie",
+   real:"Inteligentné riadenie z roku 2023 (~500 tis. €), čiastočné LED výmeny. Nie všetkých 2 084 svetelných bodov je vymenených.",
+   solve:"Dokončiť LED na všetkých bodoch + plný smart režim. Zdroj: Environmentálny fond / EPC / Program Slovensko.",
+   src:[["Eurofondy – osvetlenie/kamery","https://www.partnerskadohoda.gov.sk/22024-sk/dolny-kubin-bude-mat-novy-kamerovy-system-mesto-nan-ziskalo-eurofondy/"]]},
+  {t:"Pozemkové úpravy pre výstavbu",s:"mid",pct:40,slub:"Pozemkové úpravy garantované mestom",
+   real:"JPÚ Kňažia dokončené 2025 (~100 rodinných domov), Bysterec/Klince rozpracované (povolenia 2026–27). Proces vedie štát (Okresný úrad), nie mesto.",
+   solve:"Iniciovať ďalšie lokality a financovať inžinierske siete (IBV). Zdroj: MPRV/eurofondy na JPÚ, mesto na siete.",
+   src:[["Pozemkové úpravy DK","https://www.zilinak.sk/clanky/32738/foto-koniec-rozdrobenym-parcelam-dolny-kubin-vysporiadal-pozemky-vyrast-tam-moze-100-rodinnych-domov"]]},
+  {t:"Šport a mládež",s:"mid",pct:35,slub:"Sprístupniť ihriská verejnosti, financovanie, program „odlož mobil“",
+   real:"Dotácie 182–205 tis. €/rok; jedno ihrisko obnovené (Kia, 2025). Program „odlož mobil“ neexistuje, sprístupnenie školských ihrísk nie je doložené.",
+   solve:"VZN o sprístupnení ihrísk + rezervačný systém; mikrogrant pre mládež. Zdroj: rozpočet + sponzori.",
+   src:[["Dotácie športu DK","https://www.dolnykubin.sk/mid/547030/mesto-dolny-kubin-podpori-historicky-najvyssou-sumou-cinnost-35-organizacii-a-38-projektov-oznam.html"]]},
+  {t:"Parkovacia politika",s:"mid",pct:30,slub:"Férové parkovanie, výnos späť do ciest",
+   real:"Platené parkovanie od 2016, rezidenčné Brezovec od 2024. Výnosy bez verejného výkazu; petícia (288 podpisov) proti cenám.",
+   solve:"Zverejniť výkaz výnosov a ich použitia; prehodnotiť cenník na Brezovci. Zdroj: samofinancovateľné z parkovného.",
+   src:[["Parkovanie DK","https://www.dolnykubin.sk/parkovanie.html"]]},
+  {t:"Školy a budovy",s:"mid",pct:30,slub:"Obnova budov pre školu, škôlku, denné centrum",
+   real:"Jedna škôlka energeticky obnovená (2023, ~564 tis. €). ZŠ a denné centrum bez projektu obnovy.",
+   solve:"Energetická obnova ZŠ a denného centra. Zdroj: Plán obnovy / Environmentálny fond / Program Slovensko.",
+   src:[["Obnova MŠ DK","https://www.dolnykubin.sk/mid/547030/najvacsia-dolnokubinska-materska-skola-si-zacala-vyrabat-vlastnu-elektrinu-oznam.html"]]},
+  {t:"Turizmus",s:"mid",pct:30,slub:"Karta turistu, prepojiť Aquapark, hotely a služby",
+   real:"Orava Card (regionálna, nie mestská), AquaRelax, jeden náučný chodník. Mestská karta turistu zatiaľ nie je.",
+   solve:"Mestská karta turistu nadväzujúca na Orava Card; mobiliár chodníkov. Zdroj: rozpočet TIK + Visit Orava.",
+   src:[["Orava Card","https://www.dolnykubin.sk/orava-card.html"]]},
+  {t:"Mobilná aplikácia",s:"mid",pct:25,slub:"Appka mesta + karta výhod obyvateľa",
+   real:"Aplikácia existuje (parkovné, odpady, oznamy). Karta výhod pre obyvateľa neexistuje.",
+   solve:"Rozšíriť appku o kartu obyvateľa (zľavy, rezervácie). Zdroj: rozpočet, existujúci dodávateľ.",
+   src:[["Mobilná aplikácia DK","https://www.dolnykubin.sk/mobilna-aplikacia-0.html"]]},
+  {t:"Kultúrne stredisko",s:"mid",pct:25,slub:"Mestské kultúrne stredisko + Kino Choč",
+   real:"MsKS: zatiaľ len architektonická súťaž (2024), realizácia odhadom ~10 rokov. Kino Choč: len záchranné práce z 2021.",
+   solve:"Rozfázovať realizáciu MsKS podľa víťaznej štúdie; dokončiť Kino Choč. Zdroj: Plán obnovy / IROP.",
+   src:[["Súťaž MsKS","https://www.archinfo.sk/sutaze/slovenske/mestske-kulturne-stredisko-dolny-kubin-vysledky-sutaze.html"]]},
+  {t:"Transparentnosť",s:"mid",pct:20,slub:"Kópie faktúr + prehľad plnenia požiadaviek výborov",
+   real:"Mesto plní zákonné minimum (egov portál, Centrálny register zmlúv, zápisnice výborov v PDF). Kópie faktúr a dashboard plnenia nie sú.",
+   solve:"Rozklikávací rozpočet + kópie faktúr + online prehľad výborov. Zdroj: lacný softvér.",
+   src:[["Zverejňovanie DK","https://www.dolnykubin.sk/odbor-financny.html"]]},
+  {t:"Cyklotrasy a chodníky",s:"mid",pct:20,slub:"Cyklotrasy a bezpečné chodníky v celom meste",
+   real:"Jeden projekt Záskalie financovaný (2,7 mil. € z EÚ), výstavba 2026–27. Celomestská sieť zatiaľ nie.",
+   solve:"Po Záskalí nadviazať sieť sídlisko–škola–centrum. Zdroj: Program Slovensko / Interreg.",
+   src:[["Cyklotrasa Záskalie","https://www.moja-zilina.sk/2025/12/25/dolny-kubin-ziskal-uz-27-miliona-eur-na-vystavbu-cyklotrasy/"]]},
+  {t:"Digitálne mesto",s:"mid",pct:20,slub:"E-government bez papierov, smart senzory",
+   real:"Kamery a smart osvetlenie (2023), platba parkovného. Plnohodnotná bezpapierová e-komunikácia a senzory chýbajú.",
+   solve:"Online podania bežných agend (slovensko.sk) + senzory parkovania/odpadov. Zdroj: Program Slovensko digitalizácia.",
+   src:[["Smart projekt DK","https://www.smartcity.gov.sk/aktuality/investicie/predstavujeme-uspesne-projekty-vyzvy-moderne-technologie-i/index.html"]]},
+  {t:"Participatívny rozpočet",s:"mid",pct:15,slub:"Zaviesť participatívny rozpočet",
+   real:"Funguje len systém výborov (14–16 tis. € = 0,07 % rozpočtu), bez verejných návrhov a hlasovania občanov.",
+   solve:"Skutočný PB: verejná platforma návrhov + hlasovanie, vyčleniť 1–2 % rozpočtu. Zdroj: presun v rozpočte.",
+   src:[["Financovanie DK","https://www.dolnykubin.sk/financovanie.html"]]},
+  {t:"Nájomné bývanie",s:"mid",pct:15,slub:"Dostupné byty pre mladé rodiny",
+   real:"152 nájomných bytov, ale prevažne sociálnych (20–70 €/mes). Cielený program pre mladé rodiny nie je.",
+   solve:"Mestský nájomný dom pre mladých. Zdroj: ŠFRB (úver 1 %) + dotácia MDV SR.",
+   src:[["Nájomné bývanie DK","https://www.dolnykubin.sk/najomne-byvanie.html"]]},
+  {t:"Seniori / opatrovateľská služba",s:"mid",pct:15,slub:"Jedno zariadenie rekonštruovať, druhé postaviť",
+   real:"Jedno ZOS v nevyhovujúcom stave; nový projekt len vo fáze prípravy (2025), bez schváleného financovania.",
+   solve:"Urýchliť projekt nového ZOS + evakuačný výťah. Zdroj: Plán obnovy / Program Slovensko (sociálne služby).",
+   src:[["Sociálne služby DK","https://www.dolnykubin.sk/socialna-pomoc-a-socialna-sluzba.html"]]},
+  {t:"Zeleň a parky",s:"no",pct:12,slub:"Levanduľové parky, revitalizácia parku M. Kukučína",
+   real:"Park Kukučína: len oprava altánku (2017). Levanduľové parky: žiadne. Osobitná politika náhrad za výruby: žiadna.",
+   solve:"Projekt revitalizácie parku Kukučína; levanduľové záhony z rozpočtu zelene. Zdroj: Environmentálny fond.",
+   src:[["Park M. Kukučína","https://www.dolnykubin.sk/oznamy/vynoveny-altanok-v-parku-martina-kukucina-.html"]]},
+  {t:"Kompostáreň a odpady",s:"no",pct:10,slub:"Moderná kompostáreň, nová technika",
+   real:"Kompostáreň neexistuje. Najvyšší poplatok za odpad na Orave (29,2 €/os). Otvorený problém skládky Široká.",
+   solve:"Postaviť komunitnú/mestskú kompostáreň. Zdroj: Environmentálny fond / OP Slovensko.",
+   src:[["Skládka Široká","https://www.moja-zilina.sk/2025/03/04/dolny-kubin-nesuhlasi-s-financovanim-uzavretia-skladky-v-sirokej/"]]},
+  {t:"Digitálny územný plán",s:"no",pct:10,slub:"Prehľadný digitálny územný plán",
+   real:"Územný plán existuje len ako PDF (VZN 8/2004); Zmeny a doplnky č. 7 neschválené; GIS neintegruje regulatívy.",
+   solve:"Schváliť ZaD č. 7 + interaktívny GIS s regulatívmi. Zdroj: mestský GIS + dodávateľ (lacné).",
+   src:[["Územný plán DK","https://www.dolnykubin.sk/uzemny-plan-mesta.html"]]},
+  {t:"Parkovací dom",s:"no",pct:5,slub:"Parkovacie domy aj so súkromným kapitálom",
+   real:"Žiadny parkovací dom ani schválený projekt — predošlé zámery investorov obyvatelia neprijali. Deficit ~400 miest.",
+   solve:"Participatívne plánovať menšie parkovacie paluby; PPP/koncesia. Zdroj: súkromný kapitál + Program Slovensko (P+R).",
+   src:[["Parkovanie DK","https://www.dolnykubin.sk/parkovanie.html"]]},
+  {t:"Doprava a kolóny",s:"no",pct:5,slub:"Vyriešiť kolóny v meste",
+   real:"Žiadne inteligentné semafory, zelená vlna ani P+R. Hlavný kruhový objazd (~9 000 vozidiel/deň) v havarijnom stave, oprava sa odkladala.",
+   solve:"Dopravný generel + adaptívne semafory/zelená vlna + záchytné parkoviská; tlak na SSC. Zdroj: Program Slovensko – výzva 350 mil. € na inteligentné semafory a záchytné parkoviská.",
+   src:[["Stav hlavnej križovatky","https://spravy.stvr.sk/2025/11/cestari-slubovali-opravu-najvytazenejsej-krizovatky-na-orave-vodici-sa-jej-vsak-nedockali-nezostali-na-nu-peniaze/"],["Program Slovensko (350 mil. €)","https://mirri.gov.sk/aktuality/program-slovensko-2021-2027/najvacsia-vyzva-z-programu-slovensko-podpori-verejnu-dopravu-v-regionoch-350-milionov-eur-prinesie-nove-trate-inteligentne-semafory-aj-zachytne-parkoviska/"]]},
+];
+const LABEL={ok:"✅ Funguje",mid:"🟡 Čiastočne",no:"🔴 Reálne chýba"};
+const el=document.getElementById('cards');
+function render(filter){
+  el.innerHTML="";
+  DATA.filter(d=>filter==="all"||d.s===filter).forEach(d=>{
+    const c=document.createElement('article');
+    c.className="card "+d.s;
+    const srcHtml=d.src.map(x=>`<a href="${x[1]}" target="_blank" rel="noopener">${x[0]} ↗</a>`).join(" · ");
+    c.innerHTML=`
+      <div class="top">
+        <h3>${d.t}</h3>
+        <span class="badge ${d.s}">${LABEL[d.s]} · ~${d.pct} %</span>
+      </div>
+      <div class="row"><div class="k">Sľub</div><div class="v">${d.slub}</div></div>
+      <div class="row"><div class="k">Realita</div><div class="v">${d.real}</div></div>
+      <div class="row solve"><div class="k">Riešenie</div><div class="v">${d.solve}</div></div>
+      <div class="src">Zdroj: ${srcHtml}</div>`;
+    el.appendChild(c);
+  });
+}
+document.querySelectorAll('.pill').forEach(p=>{
+  p.addEventListener('click',()=>{
+    document.querySelectorAll('.pill').forEach(x=>x.classList.remove('active'));
+    p.classList.add('active');
+    render(p.dataset.f);
+  });
+});
+render("all");
+</script>
+</body>
+</html>
